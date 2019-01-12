@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StartActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/start_personal_cardview"
+                android:layout_width="@dimen/start_cardview_width"
+                android:layout_height="@dimen/start_cardview_height"
+                card_view:cardCornerRadius="@dimen/start_cardview_radius"
+                android:layout_margin="@dimen/start_cardview_dimen"
+                card_view:cardBackgroundColor="@color/color_orange"
+                card_view:cardElevation="@dimen/start_cardview_dimen"
+                android:onClick="StartPage"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/start_cardview_image_size"
+                        android:layout_height="@dimen/start_cardview_image_size"
+                        android:src="@drawable/user_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/start_cardview_text_size"
+                        android:textColor="@color/color_white"
+                        android:text="@string/start_personal"
+                        />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/start_produccion_cardview"
+                android:layout_width="@dimen/start_cardview_width"
+                android:layout_height="@dimen/start_cardview_height"
+                card_view:cardCornerRadius="@dimen/start_cardview_radius"
+                android:layout_margin="@dimen/start_cardview_dimen"
+                card_view:cardBackgroundColor="@color/color_red"
+                card_view:cardElevation="@dimen/start_cardview_dimen"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/start_cardview_image_size"
+                        android:layout_height="@dimen/start_cardview_image_size"
+                        android:src="@drawable/production_icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/start_cardview_text_size"
+                        android:textColor="@color/color_white"
+                        android:text="@string/start_production"
+                        />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/start_inventario_cardview"
+                android:layout_width="@dimen/start_cardview_width"
+                android:layout_height="@dimen/start_cardview_height"
+                card_view:cardCornerRadius="@dimen/start_cardview_radius"
+                android:layout_margin="@dimen/start_cardview_dimen"
+                card_view:cardBackgroundColor="@color/color_dark_blue"
+                card_view:cardElevation="@dimen/start_cardview_dimen"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/start_cardview_image_size"
+                        android:layout_height="@dimen/start_cardview_image_size"
+                        android:src="@drawable/inventarioicon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/start_cardview_text_size"
+                        android:textColor="@color/color_white"
+                        android:text="@string/start_inventario"
+                        />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/start_confeccion_cardview"
+                android:layout_width="@dimen/start_cardview_width"
+                android:layout_height="@dimen/start_cardview_height"
+                card_view:cardCornerRadius="@dimen/start_cardview_radius"
+                android:layout_margin="@dimen/start_cardview_dimen"
+                card_view:cardBackgroundColor="@color/color_green_dark"
+                card_view:cardElevation="@dimen/start_cardview_dimen"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/start_cardview_image_size"
+                        android:layout_height="@dimen/start_cardview_image_size"
+                        android:src="@drawable/fresaicon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/start_cardview_text_size"
+                        android:textColor="@color/color_white"
+                        android:text="@string/start_confeccion"
+                        />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/start_informes_cardview"
+                android:layout_width="@dimen/start_cardview_width"
+                android:layout_height="@dimen/start_cardview_height"
+                card_view:cardCornerRadius="@dimen/start_cardview_radius"
+                android:layout_margin="@dimen/start_cardview_dimen"
+                card_view:cardBackgroundColor="@color/color_purple_dark"
+                card_view:cardElevation="@dimen/start_cardview_dimen"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/start_cardview_image_size"
+                        android:layout_height="@dimen/start_cardview_image_size"
+                        android:src="@drawable/informes_icon"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/start_cardview_text_size"
+                        android:textColor="@color/color_white"
+                        android:text="@string/start_informes"
+                        />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/start_alarmas_cardview"
+                android:layout_width="@dimen/start_cardview_width"
+                android:layout_height="@dimen/start_cardview_height"
+                card_view:cardCornerRadius="@dimen/start_cardview_radius"
+                android:layout_margin="@dimen/start_cardview_dimen"
+                card_view:cardBackgroundColor="@color/color_purple"
+                card_view:cardElevation="@dimen/start_cardview_dimen"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    >
+
+                    <ImageView
+                        android:layout_width="@dimen/start_cardview_image_size"
+                        android:layout_height="@dimen/start_cardview_image_size"
+                        android:src="@drawable/notificaciones_icon"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/start_cardview_text_size"
+                        android:textColor="@color/color_white"
+                        android:text="@string/start_alarmas"
+                        />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    
+
+</android.support.design.widget.CoordinatorLayout>

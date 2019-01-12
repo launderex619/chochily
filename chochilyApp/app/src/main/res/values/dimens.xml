@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="cardview_elevation">5dp</dimen>
+    <dimen name="start_cardview_image_size">150dp</dimen>
+    <dimen name="start_cardview_text_size">30sp</dimen>
+    <dimen name="start_cardview_width">290dp</dimen>
+    <dimen name="start_cardview_height">287dp</dimen>
+    <dimen name="start_cardview_radius">14dp</dimen>
+    <dimen name="start_cardview_dimen">5dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="item_cardview_height">150dp</dimen>
+
+</resources>
