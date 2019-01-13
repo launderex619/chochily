@@ -17,36 +17,36 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="@dimen/item_cardview_margin_start"
         android:orientation="horizontal"
         >
 
         <de.hdodenhof.circleimageview.CircleImageView
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/start_personal_profile_image"
-            android:layout_width="125dp"
-            android:layout_height="125dp"
+            android:layout_width="@dimen/item_cardview_picture_size"
+            android:layout_height="@dimen/item_cardview_picture_size"
             android:src="@drawable/test_profile_image"
-            app:civ_border_width="2dp"
-            app:civ_border_color="#FFFFFF"
+            app:civ_border_width="@dimen/item_cardview_picture_size_border"
+            app:civ_border_color="@color/color_white"
             />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="@dimen/item_cardview_margin_start"
             android:gravity="center_vertical">
 
             <TextView
                 android:id="@+id/item_personal_name"
-                android:layout_width="335dp"
+                android:layout_width="@dimen/item_cardview_text_area_width"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:lineHeight="30dp"
-                android:text="Andres Manuel Fernando Lopez Obrador"
+                android:text="@string/test_name"
                 android:textColor="@color/color_white"
-                android:textSize="30sp"
+                android:textSize="@dimen/item_cardview_text_size"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -57,12 +57,12 @@
 
                 <TextView
                     android:id="@+id/item_personal_movimiento"
-                    android:layout_width="125dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lineHeight="30dp"
-                    android:text="Entrada:"
+                    android:text="@string/entrada"
                     android:textColor="@color/color_white"
-                    android:textSize="30sp"
+                    android:textSize="@dimen/item_cardview_text_size"
                     />
 
                 <TextView
@@ -70,9 +70,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:lineHeight="30dp"
-                    android:text="9:30"
+                    android:text="@string/hora"
                     android:textColor="@color/color_white"
-                    android:textSize="30sp"
+                    android:textSize="@dimen/item_cardview_text_size_time"
+                    android:textStyle="bold"
                     />
 
             </LinearLayout>
@@ -81,7 +82,7 @@
 
         <ImageView
             android:id="@+id/item_personal_editoption"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="@dimen/item_cardview_margin_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/editicon"

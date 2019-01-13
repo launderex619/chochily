@@ -1,8 +1,11 @@
 package com.carcavaz.chochilyapp.adapters;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.carcavaz.chochilyapp.R;
+import com.carcavaz.chochilyapp.constant.Helper;
 import com.carcavaz.chochilyapp.models.PersonalHistoryModel;
 import com.carcavaz.chochilyapp.models.PersonalModel;
 import com.squareup.picasso.Picasso;
@@ -21,6 +26,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.ArrayList;
 
 public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragmentAdapter.PersonalViewHolder> {
@@ -29,6 +37,7 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragme
 
     private int resource;
     private Activity activity;
+    Helper helper = new Helper();
 
 
     public PersonalFragmentAdapter(JSONArray Personals, int resource, Activity activity) {
@@ -45,27 +54,85 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragme
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PersonalViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final PersonalViewHolder holder, int position) {
         try {
             JSONObject personal = personalModels.getJSONObject(position);
-            PersonalModel personalModel = new PersonalModel(
+            JSONArray personalHistory = personal.getJSONArray("PersonalHistory");
+
+            for (int i = 0; i < personalHistory.length(); i++){
+                PersonalHistoryModel historyModel = new PersonalHistoryModel(
+                        personalHistory.getJSONObject(i).getString("Id"),
+                        personalHistory.getJSONObject(i).getString("Propietario"),
+                        personalHistory.getJSONObject(i).getString("Accion"),
+                        personalHistory.getJSONObject(i).getLong("Hora")
+                );
+                holder.personalHistoryModels.add(historyModel);
+            }
+
+            //ordena la lista de mayor a menor (de la fecha mas reciente a la mas antigua
+            Collections.sort(holder.personalHistoryModels, new Comparator<PersonalHistoryModel>() {
+                @Override
+                public int compare(PersonalHistoryModel data, PersonalHistoryModel list) {
+                    // -1 - less than, 1 - greater than, 0 - equal, all inversed for descending
+                    return data.getHora() > list.getHora() ? -1 : (data.getHora() < list.getHora()) ? 1 : 0;
+                }
+            });
+
+            holder.personalModel = new PersonalModel(
                     personal.getString("Id"),
                     personal.getString("ImageSrc"),
                     personal.getString("Nombre"),
                     personal.getString("Codigo"),
-                    personal.getString("Correo"));
+                    personal.getString("Correo"),
+                    holder.personalHistoryModels
+            );
 
             if(position % 2 == 0)
                 holder.personalCard.setCardBackgroundColor(activity.getResources().getColor(R.color.color_orange_dark));
             else
                 holder.personalCard.setCardBackgroundColor(activity.getResources().getColor(R.color.color_orange));
 
-            Picasso.get().load(personalModel.getPictureSrc()).into(holder.personalImage);
-            holder.usernameCard.setText(personalModel.getUserName());
-            holder.personalMovimiento.setText("Entrada: ");
-            holder.personalMovimientoTime.setText("5:15 pm");
+            String LastAction = holder.personalModel.getHistoryModel().get(0).getAccion() + " ";
+            Long LastActionTime = holder.personalModel.getHistoryModel().get(0).getHora();
+
+
+
+            Picasso.get().load(holder.personalModel.getPictureSrc()).into(holder.personalImage);
+            holder.usernameCard.setText(holder.personalModel.getUserName());
+            holder.personalMovimiento.setText(LastAction);
+            holder.personalMovimientoTime.setText(helper.ConvertLongToDate(LastActionTime));
             // PersonalHistoryModel personalHistoryModel = personalHistoryModels.get(position);
 
+            holder.options.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String[] text = new String[holder.personalModel.getHistoryModel().size()];
+                    AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+
+                    for(int i = 0; i < holder.personalModel.getHistoryModel().size();i++)
+                        text[i] = holder.personalModel.getHistoryModel().get(i).getAccion() + " " + helper.ConvertLongToDate(holder.personalModel.getHistoryModel().get(i).getHora());
+
+                    builder.setTitle(holder.personalModel.getUserName());
+
+                    builder.setItems(text, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+                    //Toast.makeText(activity.getApplicationContext(), text, Toast.LENGTH_LONG).show();
+
+                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            // do nothing
+                        }
+                    });
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+
+                }
+            });
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -74,25 +141,7 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragme
 
 
         //modificar para mostrar la informacion
-        /*
-        holder.options.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(activity, PictureDetailActivity.class);
-                //transiciones de salida
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
-                {
-                    Explode explode = new Explode();
-                    explode.setDuration(1000);
-                    activity.getWindow().setExitTransition(explode);
-                    activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity, v, activity.getString(R.string.transitionname_picture)).toBundle());
-                }
-                else{
-                    activity.startActivity(intent);
-                }
-            }
-        });
-        */
+
     }
 
     @Override
@@ -109,7 +158,9 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragme
         private TextView personalMovimiento;
         private TextView personalMovimientoTime;
         private ImageView options;
-        private ArrayList<PersonalHistoryModel> personalHistoryModels;
+        private ArrayList<PersonalHistoryModel> personalHistoryModels = new ArrayList<>();
+        private PersonalModel personalModel;
+
 
         public PersonalViewHolder(View itemView) {
             super(itemView);

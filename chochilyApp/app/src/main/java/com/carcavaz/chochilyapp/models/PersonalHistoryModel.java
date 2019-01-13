@@ -1,15 +1,14 @@
 package com.carcavaz.chochilyapp.models;
 
-import java.util.Date;
 
 public class PersonalHistoryModel {
 
     private String PersonalHistoryModelId;
     private String PropietarioId;
     private String Accion;
-    private Date Hora;
+    private Long Hora;
 
-    public PersonalHistoryModel(String personalHistoryModelId, String propietarioId, String accion, Date hora) {
+    public PersonalHistoryModel(String personalHistoryModelId, String propietarioId, String accion, Long hora) {
         PersonalHistoryModelId = personalHistoryModelId;
         PropietarioId = propietarioId;
         Accion = accion;
@@ -40,11 +39,11 @@ public class PersonalHistoryModel {
         Accion = accion;
     }
 
-    public Date getHora() {
+    public Long getHora() {
         return Hora;
     }
 
-    public void setHora(Date hora) {
+    public void setHora(Long hora) {
         Hora = hora;
     }
 }

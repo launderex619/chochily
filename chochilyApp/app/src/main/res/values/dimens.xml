@@ -11,5 +11,11 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="item_cardview_height">150dp</dimen>
+    <dimen name="item_cardview_margin_start">20dp</dimen>
+    <dimen name="item_cardview_picture_size">125dp</dimen>
+    <dimen name="item_cardview_picture_size_border">2dp</dimen>
+    <dimen name="item_cardview_text_area_width">335dp</dimen>
+    <dimen name="item_cardview_text_size">30sp</dimen>
+    <dimen name="item_cardview_text_size_time">15sp</dimen>
 
 </resources>

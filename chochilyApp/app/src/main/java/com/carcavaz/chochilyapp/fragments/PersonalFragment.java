@@ -86,26 +86,28 @@ public class PersonalFragment extends Fragment implements getAllPersonalAsync.Qu
 
             }
         });
-
     }
 
     @Override
     public void onQueryFinish(String res) {
         final String Res = res;
-        PersonalFragment.this.getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    JSONArray PersonalArray = new JSONArray(Res);
-                    Toast.makeText(getContext(), "" + PersonalArray.length(),Toast.LENGTH_LONG).show();
-                    PersonalFragmentAdapter pictureAdapterRecyclerView = new PersonalFragmentAdapter(PersonalArray, R.layout.item_personal, getActivity());
-                    picturesRecycler.setAdapter(pictureAdapterRecyclerView);
+        if(Res != null)
+            PersonalFragment.this.getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        JSONArray PersonalArray = new JSONArray(Res);
+                        Toast.makeText(getContext(), "" + PersonalArray.length(),Toast.LENGTH_LONG).show();
+                        PersonalFragmentAdapter pictureAdapterRecyclerView = new PersonalFragmentAdapter(PersonalArray, R.layout.item_personal, getActivity());
+                        picturesRecycler.setAdapter(pictureAdapterRecyclerView);
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
-
-            }
-        });
+            });
+        else{
+            //implementar mensaje de no hay conexion
+        }
     }
 }

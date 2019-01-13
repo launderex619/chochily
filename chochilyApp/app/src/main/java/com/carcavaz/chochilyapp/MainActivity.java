@@ -77,3 +77,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+                /*Intent intent = new Intent(activity, PictureDetailActivity.class);
+                //transiciones de salida
+                /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+                {
+                    Explode explode = new Explode();
+                    explode.setDuration(1000);
+                    activity.getWindow().setExitTransition(explode);
+                    activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity, v, activity.getString(R.string.transitionname_picture)).toBundle());
+                }
+                else{
+                    activity.startActivity(intent);
+                }
+                */

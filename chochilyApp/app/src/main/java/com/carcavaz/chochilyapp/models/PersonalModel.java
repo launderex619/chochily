@@ -1,19 +1,23 @@
 package com.carcavaz.chochilyapp.models;
 
 
+import java.util.ArrayList;
+
 public class PersonalModel {
     private String UserId;
     private String PictureSrc;
     private String UserName;
     private String Code;
     private String Email;
+    private ArrayList<PersonalHistoryModel> HistoryModel;
 
-    public PersonalModel(String userId, String pictureSrc, String userName, String code, String email) {
+    public PersonalModel(String userId, String pictureSrc, String userName, String code, String email, ArrayList<PersonalHistoryModel> historyModel) {
         UserId = userId;
         PictureSrc = pictureSrc;
         UserName = userName;
         Code = code;
         Email = email;
+        HistoryModel = historyModel;
     }
 
     public String getUserId() {
@@ -54,5 +58,13 @@ public class PersonalModel {
 
     public void setEmail(String email) {
         Email = email;
+    }
+
+    public ArrayList<PersonalHistoryModel> getHistoryModel() {
+        return HistoryModel;
+    }
+
+    public void setHistoryModel(ArrayList<PersonalHistoryModel> historyModel) {
+        HistoryModel = historyModel;
     }
 }

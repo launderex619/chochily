@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Helper {
 
@@ -20,5 +22,12 @@ public class Helper {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public String ConvertLongToDate(Long date){
+        String formated;
+        Date fecha = new Date(date);
+        formated = new SimpleDateFormat("h:mm a").format(fecha);
+        return formated;
     }
 }
