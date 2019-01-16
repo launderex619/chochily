@@ -17,9 +17,16 @@
         <item name="android:homeAsUpIndicator">@drawable/upnavbutton</item>
     </style>
 
+    <style name="ProductionTheme">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_red</item>
+        <item name="colorPrimaryDark">@color/color_red_dark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:homeAsUpIndicator">@drawable/upnavbutton</item>
+    </style>
+
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">30sp</item>
     </style>
-
 
 </resources>

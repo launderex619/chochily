@@ -1,5 +1,6 @@
 package com.carcavaz.chochilyapp;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -15,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.carcavaz.chochilyapp.fragments.PersonalFragment;
+import com.carcavaz.chochilyapp.fragments.ProductionFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,9 +27,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent intent = getIntent();
+        int StartPage = intent.getIntExtra("StartPage", R.id.navigation_personal);
         navigation = (BottomNavigationView) findViewById(R.id.bottombar);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        navigation.setSelectedItemId(R.id.navigation_personal);
+        navigation.setSelectedItemId(StartPage);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -41,15 +45,22 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_personal:
                     toast.show();
                     setToolbarBottomBarColor(R.style.PersonalTheme, R.color.color_orange_dark, getDrawable(R.color.color_orange));
-                    PersonalFragment homeFragment = new PersonalFragment();
+                    PersonalFragment personalFragment = new PersonalFragment();
                     getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container, homeFragment)
+                            .replace(R.id.container, personalFragment)
                             .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
                             .commit();
 
                     return true;
                 case R.id.navigation_produccion:
                     toast.show();
+                    setToolbarBottomBarColor(R.style.ProductionTheme, R.color.color_red_dark, getDrawable(R.color.color_red));
+                    ProductionFragment productionFragment = new ProductionFragment(MainActivity.this);
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.container, productionFragment)
+                            .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                            .commit();
+
                     return true;
                 case R.id.navigation_inventario:
                     toast.show();
@@ -59,9 +70,10 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    private void setToolbarBottomBarColor(int personalTheme, int color_orange_dark, Drawable drawable) {
-        setTheme(personalTheme);
-        setNotificationColor(color_orange_dark);
+    //(toolbar color, notifications color, bottom bar color)
+    private void setToolbarBottomBarColor(int Theme, int color, Drawable drawable) {
+        setTheme(Theme);
+        setNotificationColor(color);
         navigation.setBackground(drawable);
 
     }

@@ -37,7 +37,7 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragme
 
     private int resource;
     private Activity activity;
-    Helper helper = new Helper();
+    private Helper helper = new Helper();
 
 
     public PersonalFragmentAdapter(JSONArray Personals, int resource, Activity activity) {
@@ -101,8 +101,6 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragme
             holder.usernameCard.setText(holder.personalModel.getUserName());
             holder.personalMovimiento.setText(LastAction);
             holder.personalMovimientoTime.setText(helper.ConvertLongToDate(LastActionTime));
-            // PersonalHistoryModel personalHistoryModel = personalHistoryModels.get(position);
-
             holder.options.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -110,7 +108,7 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragme
                     AlertDialog.Builder builder = new AlertDialog.Builder(activity);
 
                     for(int i = 0; i < holder.personalModel.getHistoryModel().size();i++)
-                        text[i] = holder.personalModel.getHistoryModel().get(i).getAccion() + " " + helper.ConvertLongToDate(holder.personalModel.getHistoryModel().get(i).getHora());
+                        text[i] = holder.personalModel.getHistoryModel().get(i).getAccion() + " <<" + helper.ConvertLongToDate(holder.personalModel.getHistoryModel().get(i).getHora()) + ">>";
 
                     builder.setTitle(holder.personalModel.getUserName());
 
@@ -120,7 +118,6 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragme
 
                         }
                     });
-                    //Toast.makeText(activity.getApplicationContext(), text, Toast.LENGTH_LONG).show();
 
                     builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
@@ -130,18 +127,12 @@ public class PersonalFragmentAdapter extends RecyclerView.Adapter<PersonalFragme
                     });
                     AlertDialog dialog = builder.create();
                     dialog.show();
-
                 }
             });
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
-
-        //modificar para mostrar la informacion
-
     }
 
     @Override

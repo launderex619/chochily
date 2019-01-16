@@ -61,11 +61,8 @@ public class PersonalFragment extends Fragment implements getAllPersonalAsync.Qu
     //conectar a la api para obtener la lista de usuarios, con sus parametros
     public void getUsers(){
 
-
         allPersonalAsync.mListener = this;
         allPersonalAsync.execute();
-
-
     }
 
 
@@ -98,6 +95,13 @@ public class PersonalFragment extends Fragment implements getAllPersonalAsync.Qu
                     try {
                         JSONArray PersonalArray = new JSONArray(Res);
                         Toast.makeText(getContext(), "" + PersonalArray.length(),Toast.LENGTH_LONG).show();
+                        //reviso si la lista obtenida tiene algun empleado despedido, para quitarlo de las opciones de muestra
+                        for(int i = 0; i < PersonalArray.length(); i++){
+                            if(PersonalArray.getJSONObject(i).getString("Despedido") != "null"){
+                                PersonalArray.remove(i);
+                                i--;
+                            }
+                        }
                         PersonalFragmentAdapter pictureAdapterRecyclerView = new PersonalFragmentAdapter(PersonalArray, R.layout.item_personal, getActivity());
                         picturesRecycler.setAdapter(pictureAdapterRecyclerView);
 

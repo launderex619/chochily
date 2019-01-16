@@ -14,6 +14,7 @@
         >
 
         <LinearLayout
+            android:id="@+id/start_linear_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -29,7 +30,6 @@
                 android:layout_margin="@dimen/start_cardview_dimen"
                 card_view:cardBackgroundColor="@color/color_orange"
                 card_view:cardElevation="@dimen/start_cardview_dimen"
-                android:onClick="StartPage"
                 >
 
                 <LinearLayout

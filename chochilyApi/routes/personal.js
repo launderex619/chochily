@@ -1,30 +1,16 @@
-var express = require('express');
-var router = express.Router();
-
-const Personal = {
-  Id: "userid:",
-  ImageSrc: "https://vozdelsur.com.mx/wp-content/uploads/2018/09/amlo-bb.jpg",
-  Nombre: "Andres Manuel Lopez bebe",
-  Codigo: "12535425552",
-  Correo: "fresita@chochily.com",
-  Tipo: "user", //admin, user
-  PersonalHistory: [],
-}
-
+const express = require('express');
+const router = express.Router();
+const Personal = require('../models/Personal')
+let PersonalHistory = require('../models/PersonalHistory')
 
 const response = []
 
-for (let i = 0; i < 500; i++) {
-  const PersonalHistory =  {
-     Id: "personalhistoryid",
-     Propietario: Personal.Id,
-     Accion: "Entrada",
-     Hora: new Date().getTime()+i
-   }
+for (let i = 0; i < 10; i++) {
+  PersonalHistory.Hora = new Date().getTime()-(i*1000)
    Personal.PersonalHistory.push(PersonalHistory)
   }
 
- for (let i = 0; i < 100; i++) {
+ for (let i = 0; i < 5; i++) {
   response.push(Personal)  
  }
 /* GET Personal listing. */
